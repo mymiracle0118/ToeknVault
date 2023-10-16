@@ -1,0 +1,1030 @@
+{
+  "version": "0.0.0",
+  "name": "solana_anchor",
+  "instructions": [
+    {
+      "name": "initLendingMarket",
+      "accounts": [
+        {
+          "name": "lendingMarket",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "oracleProgramId",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "setLendingMarketOwner",
+      "accounts": [
+        {
+          "name": "lendingMarket",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "newOwner",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "makeReserve",
+      "accounts": [
+        {
+          "name": "reserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "lendingMarket",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "collateralMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "liquidityMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "bump",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "initReserve",
+      "accounts": [
+        {
+          "name": "reserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "lendingMarket",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "collateralAccount",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "liquidityAccount",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "oraclePrice",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "teamWallet",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "maxBorrowRateNumerator",
+          "type": "u64"
+        },
+        {
+          "name": "maxBorrowRateDenominator",
+          "type": "u64"
+        },
+        {
+          "name": "liquidationBonus",
+          "type": "u8"
+        },
+        {
+          "name": "liquidationThreshold",
+          "type": "u8"
+        },
+        {
+          "name": "penaltyNumerator",
+          "type": "u64"
+        },
+        {
+          "name": "penaltyDenominator",
+          "type": "u64"
+        },
+        {
+          "name": "lockDuration",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "reserveLiveControl",
+      "accounts": [
+        {
+          "name": "reserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "lendingMarket",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "isLive",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "initObligation",
+      "accounts": [
+        {
+          "name": "obligation",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "reserve",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "bump",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "depositCollateral",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "sourceCollateral",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destCollateral",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "obligation",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "collateralAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "withdrawCollateral",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "sourceCollateral",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destCollateral",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "obligation",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "collateralAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "borrowLiquidity",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "sourceLiquidity",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destLiquidity",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "obligation",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "liquidityAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "repayLiquidity",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "sourceLiquidity",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destLiquidity",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "obligation",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "liquidityAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "redeemReserveCollateral",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "sourceCollateral",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destCollateral",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarket",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "redeemReserveLiquidity",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "sourceLiquidity",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destLiquidity",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarket",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "setBorrowRate",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "lendingMarket",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "reserve",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "borrowRateNumerator",
+          "type": "u64"
+        },
+        {
+          "name": "borrowRateDenominator",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "setMarketPrice",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "lendingMarket",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "reserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "oraclePrice",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "collateralMarketPrice",
+          "type": "u128"
+        },
+        {
+          "name": "collateralMarketPriceDecimals",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "lockAsset",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "lockAccount",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "obligation",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserve",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "clockSysvar",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "unlockAsset",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "lockAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "obligation",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "sourceCollateral",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "teamWallet",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "clockSysvar",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "liquidation",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "reserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "obligation",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "sourceLiquidity",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destLiquidity",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "LendingMarket",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "oracleProgramId",
+            "type": "publicKey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Reserve",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "isLive",
+            "type": "bool"
+          },
+          {
+            "name": "lendingMarket",
+            "type": "publicKey"
+          },
+          {
+            "name": "liquidityMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "liquidityMintDecimals",
+            "type": "u8"
+          },
+          {
+            "name": "liquidityAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "liquidityOracle",
+            "type": "publicKey"
+          },
+          {
+            "name": "collateralMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "collateralMintDecimals",
+            "type": "u8"
+          },
+          {
+            "name": "collateralAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "totalLiquidity",
+            "type": "u64"
+          },
+          {
+            "name": "totalCollateral",
+            "type": "u64"
+          },
+          {
+            "name": "maxBorrowRateNumerator",
+            "type": "u64"
+          },
+          {
+            "name": "maxBorrowRateDenominator",
+            "type": "u64"
+          },
+          {
+            "name": "liquidityMarketPrice",
+            "type": "u128"
+          },
+          {
+            "name": "liquidityMarketPriceDecimals",
+            "type": "u8"
+          },
+          {
+            "name": "collateralMarketPrice",
+            "type": "u128"
+          },
+          {
+            "name": "collateralMarketPriceDecimals",
+            "type": "u8"
+          },
+          {
+            "name": "teamWallet",
+            "type": "publicKey"
+          },
+          {
+            "name": "penaltyNumerator",
+            "type": "u64"
+          },
+          {
+            "name": "penaltyDenominator",
+            "type": "u64"
+          },
+          {
+            "name": "liquidationBonus",
+            "type": "u8"
+          },
+          {
+            "name": "liquidationThreshold",
+            "type": "u8"
+          },
+          {
+            "name": "lockDuration",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Obligation",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "reserve",
+            "type": "publicKey"
+          },
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "inputAmount",
+            "type": "u64"
+          },
+          {
+            "name": "outputAmount",
+            "type": "u64"
+          },
+          {
+            "name": "lockAmount",
+            "type": "u64"
+          },
+          {
+            "name": "potentialAmount",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LockAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "isLive",
+            "type": "bool"
+          },
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "obligation",
+            "type": "publicKey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "endedAt",
+            "type": "i64"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "AccountType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Unknown"
+          },
+          {
+            "name": "Mapping"
+          },
+          {
+            "name": "Product"
+          },
+          {
+            "name": "Price"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PriceStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Unknown"
+          },
+          {
+            "name": "Trading"
+          },
+          {
+            "name": "Halted"
+          },
+          {
+            "name": "Auction"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CorpAction",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "NoCorpAct"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PriceType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Unknown"
+          },
+          {
+            "name": "Price"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 300,
+      "name": "InvalidOracleConfig",
+      "msg": "Pyth product account provided is not owned by the lending market oracle program"
+    },
+    {
+      "code": 301,
+      "name": "PythTrading",
+      "msg": "Pyth Trading"
+    },
+    {
+      "code": 302,
+      "name": "InvalidPythPriceAccount",
+      "msg": "Invalid Pyth price account"
+    },
+    {
+      "code": 303,
+      "name": "MathOverflow",
+      "msg": "Math operation overflow"
+    },
+    {
+      "code": 304,
+      "name": "NotMatchLiquidityAccount",
+      "msg": "Not match liquidity account"
+    },
+    {
+      "code": 305,
+      "name": "NotMatchLiquidityMint",
+      "msg": "Not match liquidity mint"
+    },
+    {
+      "code": 306,
+      "name": "NotMatchOwnerAddress",
+      "msg": "Not match owner address"
+    },
+    {
+      "code": 307,
+      "name": "NotMatchCollateralMint",
+      "msg": "Not match collateral mint"
+    },
+    {
+      "code": 308,
+      "name": "NotMatchCollateralAccount",
+      "msg": "Not match collateral account"
+    },
+    {
+      "code": 309,
+      "name": "NotMatchReserveAddress",
+      "msg": "Not match reserve address"
+    },
+    {
+      "code": 310,
+      "name": "TokenTransferFailed",
+      "msg": "Token transfer failed"
+    },
+    {
+      "code": 311,
+      "name": "TokenSetAuthorityFailed",
+      "msg": "Token set authority failed"
+    },
+    {
+      "code": 312,
+      "name": "NotEnoughLiquidity",
+      "msg": "Not enough liquidity"
+    },
+    {
+      "code": 313,
+      "name": "InvalidBorrowRate",
+      "msg": "Invalid borrow rate"
+    },
+    {
+      "code": 314,
+      "name": "NotEnoughCollateral",
+      "msg": "Not enough collateral"
+    },
+    {
+      "code": 315,
+      "name": "NotMatchLendingMarket",
+      "msg": "Not match lending market"
+    },
+    {
+      "code": 316,
+      "name": "DerivedKeyInvalid",
+      "msg": "Derived key invalid"
+    },
+    {
+      "code": 317,
+      "name": "NotMatchObligation",
+      "msg": "Not match obligation"
+    },
+    {
+      "code": 318,
+      "name": "InvalidLockState",
+      "msg": "Invalid lock state"
+    },
+    {
+      "code": 319,
+      "name": "InvalidBorrowAmount",
+      "msg": "Invalid borrow amount"
+    },
+    {
+      "code": 320,
+      "name": "ReserveNotAllowed",
+      "msg": "Reserve not allowed"
+    },
+    {
+      "code": 321,
+      "name": "LiquidationBonusError",
+      "msg": "Liquidation bonus error"
+    },
+    {
+      "code": 322,
+      "name": "InvalidLiquidationState",
+      "msg": "Invalid lilquidation state"
+    },
+    {
+      "code": 323,
+      "name": "NotAllowedToBeZero",
+      "msg": "Not allowed to be zero"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "short_name": "Seeded",
+  "name": "Seeded trading portal",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#101021",
+  "background_color": "#101021"
+}
